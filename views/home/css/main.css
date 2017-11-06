@@ -1,0 +1,61 @@
+body {
+	background-color: #eaeaea;
+	text-align: center;
+}
+
+header {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 40px;
+}
+
+h1,h4 {
+	font-family: 'Shadows Into Light Two', cursive;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+.container {
+	max-width: 1080px;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+    font-family: 'Radley', serif;
+}
+
+.navbar-default {
+    background-color: #eaeaea;
+    border-color: #eaeaea;
+}
+
+.main-container {
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+.text-side {
+	text-align: left;
+}
+
+#pic {
+	width: 200px;
+	height: 200px;
+}
+
+.quote-each {
+	margin-bottom: 100px;
+}
