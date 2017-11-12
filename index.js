@@ -2,9 +2,11 @@ var express     = require('express'),
     nunjucks    = require('nunjucks'),
     bodyParser  = require('body-parser'),
     fs          = require("fs"),
+    favicon     = require('serve-favicon'),
+    async       = require('async'),
     tools       = require("./tools.js"),
     config      = require('./config.json');
-
+    
 var app         = express();
 
 // Configure Nunjucks
@@ -19,6 +21,8 @@ nunjucks.configure(_templates, {
 app.engine( 'html', nunjucks.render ) ;
 app.set( 'view engine', 'html' ) ;
 
+app.use(favicon(__dirname + '/views/home/images/favicon.ico'));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -26,9 +30,16 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/views'));
 
 app.get('/home', function(req,get_res){
-    get_res.render("home/index.njk",{
-        "title":"Home"
+
+    var tut_folder_path = _templates + "/home/tutorials/";
+
+    tools.get_tutorials(tut_folder_path, (err,tutorials) => {
+        get_res.render("home/index.njk",{
+            "title":"Home",
+            "tutorials": tutorials
+        });
     });
+    
 });
 
 app.get('/home/work', function(req,get_res){
@@ -53,41 +64,31 @@ app.get('/home/tutorials/docker', function(req,get_res){
 app.get('/home/tutorials/:tutorial_name/:page', function(req,get_res){
     var page = req.params.page;
     var tutorial_name = req.params.tutorial_name;
-    var folder_path = _templates + "/home/tutorials/" + tutorial_name + "/";
+    var tut_folder_path = _templates + "/home/tutorials/";
+    var folder_path = tut_folder_path + tutorial_name + "/";
     var fs_path = folder_path + page + ".njk";
     var template_path = "home/tutorials/" + tutorial_name + "/" + page + ".njk";
 
     fs.exists(fs_path, (exists) => {
         if(exists){
-            var table_of_contents = [];
-            fs.readdir(folder_path, (err, files) => {
-                if(err){
-                    console.log("Could not find a single page in directory " + folder_path);
-                    return;
+            async.parallel({
+                tutorials: function(callback){
+                    tools.get_tutorials(tut_folder_path, (err,tutorials) => {
+                        callback(null, tutorials)
+                    });
+                },
+                tutorial_toc: function(callback){
+                    tools.get_tutorial_toc(folder_path, (err,table_of_contents) => {
+                        callback(null, table_of_contents)
+                    });
                 }
-
-                var first_char;
-                for(i in files){
-                    file_name = files[i];
-                    if(tools.str_is_number(file_name[0])){
-                        var stripped_dot = file_name.split(".");
-                        var file_name_wo_ending = stripped_dot[0];
-                        var stripped_dash = file_name_wo_ending.split("-");
-                        var file_name_wo_number = stripped_dash[1];
-                        var display_name = file_name_wo_number.replace(/_/g," ")
-
-                        table_of_contents.push({
-                            template_file: file_name_wo_ending,
-                            display_name: display_name
-                        });
-                    }
-                }
-
+            },(err,res) =>{
                 get_res.render(template_path,{
                     "title": tutorial_name + " Tutorial",
-                    "table_of_contents":table_of_contents
+                    "tutorials": res.tutorials,
+                    "table_of_contents": res.tutorial_toc
                 });
-            })
+            });
         }
         else{
             get_res.redirect("/home/tutorials/" + tutorial_name);

@@ -45,8 +45,9 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tutorials<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/home/tutorials/docker/1-what-is-docker">Docker</a></li>
-                            <li><a href="/home/tutorials/kubernetes">Kubernetes</a></li>
+                            {% for tutorial in tutorials%}
+                            <li><a href="/home/tutorials/{{ tutorial.tutorial }}/{{ tutorial.tut_index_page}}">{{tutorial.tutorial}}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>

@@ -74,6 +74,14 @@ h1,h4 {
 	text-align: center;
 }
 
+#kubernetes-main-img {
+	max-width: 200px;
+}
+
+#kubernetes-main-img-div {
+	text-align: center;
+}
+
 .navigation-container {
 	text-align: left;
 }

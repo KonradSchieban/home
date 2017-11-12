@@ -1,0 +1,26 @@
+{% extends "home/base.njk" %}
+
+{% block body %}
+
+    <div class="col-md-4 col-sm-4">
+        <div class="row navigation-container">
+            
+            <div id="docker-main-img-div">
+                <img id="kubernetes-main-img" src="/home/images/kubernetes.svg" alt="Kubernetes Image">
+            </div>
+            
+            <h3>Navigation</h3>
+            <ol>
+                {% for toc_entry in table_of_contents %}
+                <li><a href="/home/tutorials/Kubernetes/{{toc_entry.template_file}}">{{toc_entry.display_name}}</a></li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+    {% block kubernetesbody %}
+
+    {% endblock %}        
+
+</div>
+{% endblock %}
