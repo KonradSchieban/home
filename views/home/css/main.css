@@ -1,6 +1,7 @@
 body {
-	background-color: #eaeaea;
 	text-align: center;
+	position: relative;
+	height: 100%;
 }
 
 header {
@@ -37,11 +38,6 @@ h1,h4 {
     font-family: 'Radley', serif;
 }
 
-.navbar-default {
-    background-color: #eaeaea;
-    border-color: #eaeaea;
-}
-
 .main-container {
 	margin-top: 50px;
 	margin-bottom: 100px;
@@ -58,4 +54,30 @@ h1,h4 {
 
 .quote-each {
 	margin-bottom: 100px;
+}
+
+.footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	/*background-color: #efefef;*/
+	text-align: center;
+}
+
+#docker-main-img {
+	max-width: 200px;
+}
+
+#docker-main-img-div {
+	text-align: center;
+}
+
+.navigation-container {
+	text-align: left;
+}
+
+.article {
+	text-align: left;
 }

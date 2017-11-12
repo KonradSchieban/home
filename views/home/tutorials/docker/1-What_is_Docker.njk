@@ -1,0 +1,31 @@
+{% extends "home/tutorials/docker/docker-base.njk" %}
+
+{% block dockerbody %}
+
+    <div class="col-md-8 col-sm-8 article">
+        <div class="row">
+            <h2>1. What is Docker?</h2>
+            <p>Docker is an open-source technology which provides an additional layer of virtualization of Linux-based operating systems in the form of so-called containers.
+               Containers are isolated operating systems that are configured in container images and can run on a variety of different platforms (e.g. virtual machines, physical servers, Linux, Windows,...).
+               A Docker container image is a very light-weight packaged piece of software that contains everything that is needed to run the container as an isolated operating system.
+               Typically applications and their dependencies are packaged in a container image and can be run on an isolated guest operating system on any machine that supports the
+               execution of Docker images.</p>
+            <h3>Why is Docker so popular?</h3>
+            <p>The use of containerized images for application delivery solves multiple problems. For instance, packaging an application and its configuration on
+            on the operating system as a container images provides a means to reliably transport the application from one computing environment to another (e.g. from
+            development to UAT to production). And it does not matter if the container runs on a developer's laptop, on a physical machine in a datacenter or in the public
+            cloud on AWS, Microsoft Azure or Google Cloud.</p>
+            <p>Moreover, the use of Docker container provides a great way of scaling applications up and down. Since containers are light-weight and may only be
+            a few megabytes large, a server can host much more containers than virtual machines which are typically more of the size of a multiple gigabytes. The deployment
+            of a container only takes seconds whereas booting a new virtual machine may take minutes. Therefore, you can scale your application to hundreds of instances within just seconds
+            whereas this would hardly be possible with virtual machines.</p>
+            <p>The popularity of Docker containers has promoted a modular architecture for software applications in which an application is split into so-called
+            microservices where each microservice runs on its own container. For example, an application may be split into a database service, an application front-end, an
+            authentication service, a backend-service, etc.. This is in contrast to a monolithical application where every module runs on a single server.
+            The microservice architecture has the benefit that the application is easier to manage by having modular microservices, since changes in the source code only require to rebuild
+            a single microservice instead of the entire application.
+        </div>
+    </div>
+
+</div>
+{% endblock %}

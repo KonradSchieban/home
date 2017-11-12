@@ -1,0 +1,82 @@
+{% extends "home/tutorials/docker/docker-base.njk" %}
+
+{% block dockerbody %}
+
+    <div class="col-md-8 col-sm-8 article">
+        <div class="row">
+            <h2>2. Hello World</h2>
+                <p>After having installed docker on our local machine, we can downnload a container image and run it. The most basic container image
+                that you can download is called <i>hello-world</i>. Let's download and run it by entering as root user:</p>
+                <pre><i>root@debian1:/home/konrad# docker run hello-world</i>
+
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+9a0669468bf7: Pull complete 
+Digest: sha256:0e06ef5e1945a718b02a8c319e15bae44f47039005530bc617a5d071190ed3fc
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://cloud.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/engine/userguide/
+</pre>
+            <p>With the command <i>docker run &#91;OPTIONS&#93; IMAGE &#91;COMMAND&#93;</i> Docker runs a command in a container. Docker first tries to find the container 
+            image locally and downloads the image from an official source online if it cannot find it locally. In our case, we have downloaded the <i>hello-world</i>
+            image successfully which was then stopped by docker because we have not specified a command to run.</p>
+
+            <p>By typing <i>docker ps</i> Docker lists all containers on the machine and with the -a option even the ones that are stopped.</p>
+
+<pre><i>root@debian1:/home/konrad# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+af976d02108d        hello-world         "/hello"            5 minutes ago      Exited (0) 34 minutes ago                       kind_bartik
+</i></pre>
+
+            <p>Note, how each container gets an ID assigned by Docker and a randomaized but human-readable name.</p>
+            <p>You can also run an interactive session on a container by adding the flags <i>--ti</i> (-t for tty pseudo-terminal and -i for interactive for user input). We can try this for a container image of Alpine Linux:</p>
+
+<pre><i>root@debian1:/home/konrad# docker run -ti alpine /bin/sh
+/ # 
+</i></pre>
+
+            <p>Now we have an interactive session with the container and can navigate through the file system, run commands, etc. . We can always exit the interactive session
+            by typing Ctrl-D or <i>exit</i>.</p>
+
+            <p>If we enter <i>docker ps -a</i> again, we can see that another container has been created:</p>
+
+<pre><i>root@debian1:/home/konrad# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                   PORTS               NAMES
+cb2f90db81c0        alpine              "bash"              4 minutes ago       Created                                      flamboyant_allen
+af976d02108d        hello-world         "/hello"            10 minutes ago      Exited (0) 3 hours ago                       kind_bartik
+</i></pre>
+
+            <p>Note, that we can create interactive sessions with a container using the flag <i>--rm</i>, which means that upon exiting the session the container gets removed automatically/.</p>
+<pre><i>
+root@debian1:/home/konrad# docker run -ti --rm alpine /bin/sh
+/ # 
+/ # exit
+root@debian1:/home/konrad# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                   PORTS               NAMES
+cb2f90db81c0        alpine              "bash"              6 minutes ago       Created                                      flamboyant_allen
+af976d02108d        hello-world         "/hello"            12 minutes ago      Exited (0) 3 hours ago                       kind_bartik
+</i></pre>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
