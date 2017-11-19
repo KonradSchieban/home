@@ -31,6 +31,10 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/views/tutorials'));
 
+app.get('/', function(err,get_res){
+    get_res.redirect('/home');
+});
+
 app.get('/home', function(req,get_res){
 
     var tut_folder_path = _templates + "/home/tutorials/";
