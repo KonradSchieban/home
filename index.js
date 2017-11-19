@@ -80,6 +80,9 @@ app.get('/home/tutorials/:tutorial_name/:page', function(req,get_res){
             async.parallel({
                 tutorials: function(callback){
                     tools.get_tutorials(tut_folder_path, (err,tutorials) => {
+                        tutorials.forEach(function(tutorial) {
+                            console.log("Tutorials: " + tutorial.tutorial);
+                        });
                         callback(null, tutorials)
                     });
                 },
