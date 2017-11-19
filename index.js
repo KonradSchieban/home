@@ -9,7 +9,7 @@ var express     = require('express'),
     
 var app         = express();
 
-//const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080
 
 // Configure Nunjucks
 //var _templates = process.env.NODE_PATH ? process.env.NODE_PATH + '/views' : 'views' ;
