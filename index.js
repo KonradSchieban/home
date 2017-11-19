@@ -50,8 +50,13 @@ app.get('/home', function(req,get_res){
 
 app.get('/bgi4ai', function(req,get_res){
     
-    get_res.render("home/bgi4ai.njk",{
-        "title":"BGI4AI"
+    var tut_folder_path = _templates + "/home/tutorials/";
+    
+    tools.get_tutorials(tut_folder_path, (err,tutorials) => {
+        get_res.render("home/bgi4ai.njk",{
+            "title":"BGI4AI",
+            "tutorials": tutorials
+        });
     });
     
 });
