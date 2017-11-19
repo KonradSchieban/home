@@ -48,6 +48,14 @@ app.get('/home', function(req,get_res){
     
 });
 
+app.get('/bgi4ai', function(req,get_res){
+    
+    get_res.render("home/bgi4ai.njk",{
+        "title":"BGI4AI"
+    });
+    
+});
+
 app.get('/home/work', function(req,get_res){
     get_res.render("home/work.njk",{
         "title":"Work"
