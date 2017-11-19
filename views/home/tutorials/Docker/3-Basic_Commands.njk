@@ -1,0 +1,61 @@
+{% extends "home/tutorials/docker/docker-base.njk" %}
+
+{% block dockerbody %}
+
+    <div class="col-md-8 col-sm-8 article">
+        <div class="row">
+            <h2>3. Basic Commands</h2>
+                
+            <h4> <span>&#8226;</span> docker help</h4>
+            <p>As with any cli, the most important command is the one that helps you find the command that you need. With <span class="terminal">docker help</span>
+            you can list all available command for docker with some explanation what they do.</p>
+
+            <pre><i>root@debian1:/home/konrad# docker help</i>
+Usage:	docker COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+      [...]
+
+Management Commands:
+  container   Manage containers
+  image       Manage images
+  [...]
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  [...]
+
+Run 'docker COMMAND --help' for more information on a command.</pre>
+
+            <p>Note, that the command <span class="terminal">docker COMMAND --help</span> offers you more explanation for every specific command.</p>
+            <hr>
+
+            <h4> <span>&#8226;</span> docker images</h4>
+            <p>The command <span class="terminal">docker images</span> list all the local images that Docker downloaded to your local machine:</p>
+            <pre><i>root@debian1:/home/konrad# docker images</i>
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              725dcfab7d63        2 weeks ago         1.84kB
+alpine              latest              053cde6e8953        2 weeks ago         3.97MB</pre>
+            <hr>
+
+            <h4> <span>&#8226;</span> docker pull</h4>
+            <p><span class="terminal">docker pull</span> downloads the latest version of a docker image, if there are any newer versions than the ones on your local machine.
+            In contrast to <span class="terminal">docker run</span>, it does not run the container immediately.</p>
+
+            <pre><i>root@debian1:/home/konrad# docker pull alpine</i>
+Using default tag: latest
+latest: Pulling from library/alpine
+Digest: sha256:d6bfc3baf615dc9618209a8d607ba2a8103d9c8a405b3bd8741d88b4bef36478
+Status: Image is up to date for alpine:latest</pre>
+
+            
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

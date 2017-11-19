@@ -10,7 +10,7 @@ header {
 	margin-bottom: 40px;
 }
 
-h1,h4 {
+.main-heading {
 	font-family: 'Shadows Into Light Two', cursive;
 }
 
@@ -88,4 +88,8 @@ h1,h4 {
 
 .article {
 	text-align: left;
+}
+
+.terminal {
+	font-family: Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace;
 }
