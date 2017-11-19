@@ -9,8 +9,6 @@ var express     = require('express'),
     
 var app         = express();
 
-const PORT = process.env.PORT || 8080
-
 // Configure Nunjucks
 //var _templates = process.env.NODE_PATH ? process.env.NODE_PATH + '/views' : 'views' ;
 var _templates = __dirname + '/views';
@@ -103,6 +101,9 @@ app.get('/home/tutorials/:tutorial_name/:page', function(req,get_res){
 
 //app.listen(config.listener_port);
 app.listen(process.env.PORT || config.listener_port);
-console.log('Starting server on port ' + config.listener_port + '...');
-console.log("Dir: " + __dirname);
-console.log("Templates: " + _templates);
+
+if(process.env.PORT){
+    console.log('Starting server on port ' + process.env.PORT + '...');
+}else{
+    console.log('Starting server on port ' + config.listener_port + '...');
+}
