@@ -101,7 +101,8 @@ app.get('/home/tutorials/:tutorial_name/:page', function(req,get_res){
     
 });
 
-app.listen(config.listener_port);
+//app.listen(config.listener_port);
+app.listen(process.env.PORT || config.listener_port);
 console.log('Starting server on port ' + config.listener_port + '...');
 console.log("Dir: " + __dirname);
 console.log("Templates: " + _templates);
