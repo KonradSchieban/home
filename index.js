@@ -9,8 +9,11 @@ var express     = require('express'),
     
 var app         = express();
 
+//const PORT = process.env.PORT || 8080
+
 // Configure Nunjucks
-var _templates = process.env.NODE_PATH ? process.env.NODE_PATH + '/views' : 'views' ;
+//var _templates = process.env.NODE_PATH ? process.env.NODE_PATH + '/views' : 'views' ;
+var _templates = __dirname + '/views';
 nunjucks.configure(_templates, {
     autoescape: true,
     cache: false,
@@ -28,6 +31,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/views/tutorials'));
 
 app.get('/home', function(req,get_res){
 
@@ -98,4 +102,6 @@ app.get('/home/tutorials/:tutorial_name/:page', function(req,get_res){
 });
 
 app.listen(config.listener_port);
-console.log('Starting server on port' + config.listener_port + '...');
+console.log('Starting server on port ' + config.listener_port + '...');
+console.log("Dir: " + __dirname);
+console.log("Templates: " + _templates);

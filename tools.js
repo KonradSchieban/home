@@ -26,7 +26,9 @@ module.exports = {
             function(callback){
                 fs.readdir(tut_folder_path, (err,tut_folders) => {
                     if(err){
-                        console.log("Could not read Tutorial Folder path!")
+                        console.log("Folder path: " + tut_folder_path);
+                        console.log("Error" + err);
+                        console.log("Could not read Tutorial Folder path!");
                         return;
                     }
                     callback(null, tut_folders);
