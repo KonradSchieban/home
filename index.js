@@ -18,6 +18,8 @@ nunjucks.configure(_templates, {
     express: app
 });
 
+var admin       = require('./admin/index.js')(app, _templates);
+
 // Set Nunjucks as rendering engine for pages with .html suffix
 app.engine( 'html', nunjucks.render ) ;
 app.set( 'view engine', 'html' ) ;
@@ -58,7 +60,6 @@ app.get('/bgi4ai', function(req,get_res){
             "tutorials": tutorials
         });
     });
-    
 });
 
 app.get('/home/work', function(req,get_res){

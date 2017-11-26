@@ -37,7 +37,7 @@
                 </button>
             </div>                                                      
 
-            <div class="collapse navbar-collapse topNavBar" id="topNavBar">
+            <div class="collapse navbar-collapse topNavBar dual-collapse" id="topNavBar">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/home">Home</a>
@@ -52,6 +52,11 @@
                             <li><a href="/home/tutorials/{{ tutorial.tutorial }}/{{ tutorial.tut_index_page}}">{{tutorial.tutorial}}</a></li>
                             {% endfor %}
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/admin">
+                            <i class="fa fa-user-circle" style="font-size:12px"> Admin</i>
+                        </a>
                     </li>
                 </ul>
             </div>
