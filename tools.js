@@ -31,7 +31,6 @@ module.exports = {
                         console.log("Could not read Tutorial Folder path!");
                         return;
                     }
-                    console.log("Found folders: " + tut_folders);
                     callback(null, tut_folders);
                 });
             },

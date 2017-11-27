@@ -9,6 +9,25 @@ var express     = require('express'),
     
 var app         = express();
 
+//*************************** */
+// Here starts the mongoose section
+var mongoose    = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
+var promise = mongoose.createConnection('mongodb://localhost/test', {
+    useMongoClient: true,
+    /* other options */
+});
+promise.then(function(db) {
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+      // we're connected!
+    });
+    
+});
+//*************************** */
+
 // Configure Nunjucks
 //var _templates = process.env.NODE_PATH ? process.env.NODE_PATH + '/views' : 'views' ;
 var _templates = __dirname + '/views';
@@ -17,8 +36,6 @@ nunjucks.configure(_templates, {
     cache: false,
     express: app
 });
-
-var admin       = require('./admin/index.js')(app, _templates);
 
 // Set Nunjucks as rendering engine for pages with .html suffix
 app.engine( 'html', nunjucks.render ) ;
@@ -32,6 +49,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/views/tutorials'));
+
+var admin       = require('./admin/index.js')(app, _templates, mongoose);
 
 app.get('/', function(err,get_res){
     get_res.redirect('/home');
