@@ -1,0 +1,45 @@
+{% extends "home/base.njk" %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <h3>New Page</h3>
+    </div>
+</div>
+
+
+<div class="row form-row">
+    <div class="col-md-12 col-sm-12">
+
+        <form method="post" action="/home/admin">
+            <div class="form-group">
+                <label for="tutorial-select">Tutorial</label>
+                <select class="form-control" id="tutorial-select" name="tutorial">
+                    {% for tutorial in tutorials %}
+                    <option>{{ tutorial.tutorial }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="title" class="form-control" id="title" aria-describedby="title" placeholder="Enter Title" name="title">
+                <small id="title_help" class="form-text text-muted">Enter a title for the page you are creating.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="article">Article</label>
+                <textarea class="form-control" id="article-textarea" rows="10" name="article"></textarea>
+                <small id="article_help" class="form-text text-muted">Enter the html of the page are creating.</small>
+            </div>
+
+            <div class="form-group"> 
+                <button type="submit" class="btn btn-default">Save</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
